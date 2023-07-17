@@ -1,0 +1,12 @@
+workflows:
+  ios-workflow:
+    name: iOS Build
+    instance_type: mac_mini
+    environment:
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - flutter build ios
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log

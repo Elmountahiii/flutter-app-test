@@ -1,12 +1,11 @@
 workflows:
-  ios-workflow:
+  ios:
     name: iOS Build
-    instance_type: mac_mini
     environment:
-      xcode: latest
-      cocoapods: default
+      vars:
+        XCODE_SCHEME: "Runner"
+        XCODE_WORKSPACE: "ios/Runner.xcworkspace"
+        XCODE_CONFIGURATION: "Release"
     scripts:
-      - flutter build ios
-    artifacts:
-      - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
+      - flutter pub get
+      - flutter build ios --release --no-codesign
